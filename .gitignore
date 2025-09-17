@@ -1,0 +1,7 @@
+# Ignore environment file
+.env
+
+# Ignore platform directory and its contents
+/platform/
+
+
