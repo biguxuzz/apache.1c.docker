@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  apache-1c:
+    build: .
+    container_name: apache-1c
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    environment:
+      - TZ=Europe/Moscow
+    extra_hosts:
+      - "host:host-gateway" # для обращения к хосту по имени "host" из VRD (Srvr=host)
+    volumes:
+      # Конфиг сайта Apache
+      - ./config/000-default.conf:/etc/apache2/sites-enabled/000-default.conf:ro
+
+      # Публикация 1С (VRD и статические файлы)
+      - ./www/uh:/var/www/uh:ro
+
+      # keytab для Kerberos
+      - ./secrets/apache2.keytab:/etc/apache2/apache2.keytab:ro
+
+      # Библиотеки/модуль 1С с хоста (wsap24.so и зависимости)
+      - ${ONEC_DIR:-./host-1c/8.3.24.1691}:/opt/1cv8/x86_64/8.3.24.1691:ro
+
+      # (необязательно) krb5.conf, если нужен кастомный
+      # - ./config/krb5.conf:/etc/krb5.conf:ro
+
+
