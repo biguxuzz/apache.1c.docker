@@ -11,6 +11,7 @@ services:
       - TZ=Europe/Moscow
     extra_hosts:
       - "host:host-gateway" # для обращения к хосту по имени "host" из VRD (Srvr=host)
+      - "1c-app:host-gateway" # чтобы адреса рабочих процессов 1С (регистрируются как 1c-app) были достижимы
     volumes:
       # Конфиг сайта Apache
       - ./config/000-default.conf:/etc/apache2/sites-enabled/000-default.conf:ro
