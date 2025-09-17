@@ -14,6 +14,8 @@ services:
     volumes:
       # Конфиг сайта Apache
       - ./config/000-default.conf:/etc/apache2/sites-enabled/000-default.conf:ro
+      # Глобальный ServerName
+      - ./config/servername.conf:/etc/apache2/conf-enabled/servername.conf:ro
 
       # Публикация 1С (VRD и статические файлы)
       - ./www/uh:/var/www/uh:ro
