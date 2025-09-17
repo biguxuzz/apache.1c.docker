@@ -19,7 +19,7 @@ services:
       - ./www/uh:/var/www/uh:ro
 
       # keytab для Kerberos
-      - ./secrets/apache2.keytab:/etc/apache2/apache2.keytab:ro
+      # - ./secrets/apache2.keytab:/etc/apache2/apache2.keytab:ro
 
       # Библиотеки/модуль 1С с хоста (wsap24.so и зависимости)
       - ${ONEC_DIR:-./host-1c/8.3.24.1691}:/opt/1cv8/x86_64/8.3.24.1691:ro
